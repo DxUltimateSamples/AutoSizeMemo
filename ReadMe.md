@@ -37,7 +37,7 @@ Scrollbars are set to False by default and AutoSizeInLayoutControl is set to Tru
 ![Auto Size Memo 1](Shared/AutoSizeMemo_1.gif)
 
 
-#### In LayoutControl
+#### In AutoSize-Form 
 
 The AutoSize property of the AutoSizeMemoEdit is set to True and AutoSizeMode to GrowOrShrink.
 Finally, AutoSize of the Form is set to True as well, resulting in the complete form resizing when editing:
@@ -45,7 +45,7 @@ Finally, AutoSize of the Form is set to True as well, resulting in the complete 
 ![Auto Size Memo 1](Shared/AutoSizeMemo_2.gif)
 
 
-#### In LayoutControl
+#### In Form with Dock Panels
 
 In this case, the form is not set to AutoSize and the AutoSizeMemoEdit control is automatically resizing itself to show all of its contents:
 
