@@ -27,6 +27,18 @@ This example includes an inherited MemoEdit control: **AutoSizeMemoEdit**
 
 The AutoSizeMemoEdit control implements both missing autosizing mechanisms (#1 and #2), and nothing else is required than placing it on a form or control or on a LayoutControl.
 
+#### Usage
+
+There are three different use cases, each of which is controlled by a different setting:
+
+- Standalone Edit Control  
+  set **AutoSizeMemoEdit.AutoSize**
+- Inside regular XtraLayoutControl (and DataLayoutControl)  
+  set **AutoSizeMemoEdit.AutoSizeInLayoutControl**
+- In a LayoutView inside xtraGrid  
+  set **RepositoryItemAutoSizeMemoEdit.AutoSizeInGridLayoutView**
+
+
 
 ### 4. Examples
 
@@ -42,7 +54,7 @@ Scrollbars are set to False by default and AutoSizeInLayoutControl is set to Tru
 The AutoSize property of the AutoSizeMemoEdit is set to True and AutoSizeMode to GrowOrShrink.
 Finally, AutoSize of the Form is set to True as well, resulting in the complete form resizing when editing:
 
-![Auto Size Memo 1](Shared/AutoSizeMemo_2.gif)
+![Auto Size Memo 2](Shared/AutoSizeMemo_2.gif)
 
 
 #### In Form with Dock Panels
@@ -50,7 +62,15 @@ Finally, AutoSize of the Form is set to True as well, resulting in the complete 
 In this case, the form is not set to AutoSize and the AutoSizeMemoEdit control is automatically resizing itself to show all of its contents:
 
 
-![Auto Size Memo 1](Shared/AutoSizeMemo_3.gif)
+![Auto Size Memo 3](Shared/AutoSizeMemo_3.gif)
+
+#### In a LayoutView inside the DataGrid Control
+
+This requires setting the AutoSizeInGridLayoutView of the RepositoryItemAutoSizeMemoEdit after adding AutoSizeMemoEdit as a ColumnEdit in the LayoutView.
+
+
+![Auto Size Memo 4](Shared/AutoSizeMemo_4.gif)
+
 
 
 

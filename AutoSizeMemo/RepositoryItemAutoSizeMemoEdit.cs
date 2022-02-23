@@ -1,7 +1,8 @@
 ﻿namespace AutoSizeMemo
 {
+    using System.ComponentModel;
     using System.Windows.Forms;
-
+    using DevExpress.XtraEditors;
     using DevExpress.XtraEditors.Drawing;
     using DevExpress.XtraEditors.Registrator;
     using DevExpress.XtraEditors.Repository;
@@ -10,6 +11,8 @@
     [UserRepositoryItem("RegisterAutoSizeMemoEdit")]
     public class RepositoryItemAutoSizeMemoEdit : RepositoryItemMemoEdit
     {
+        private bool autoSizeInGridLayoutView;
+
         static RepositoryItemAutoSizeMemoEdit()
         {
             RegisterAutoSizeMemoEdit();
@@ -46,6 +49,29 @@
             }
         }
 
+        [Description("Gets or sets whether the editor's height is changed to display the editor's content in its entirety. This property is in effect when the editor resides within a LayoutView in side the DataGrid control.")]
+        [DXCategory("Properties")]
+        [RefreshProperties(RefreshProperties.All)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Browsable(true)]
+        [DefaultValue(false)]
+        public bool AutoSizeInGridLayoutView
+        {
+            get
+            {
+                return this.autoSizeInGridLayoutView;
+            }
+
+            set
+            {
+                if (this.autoSizeInGridLayoutView != value)
+                {
+                    this.autoSizeInGridLayoutView = value;
+                    this.OnPropertiesChanged();
+                }
+            }
+        }
+
         public static void RegisterAutoSizeMemoEdit()
         {
             EditorRegistrationInfo.Default.Editors.Add(new EditorClassInfo(nameof(AutoSizeMemoEdit), typeof(AutoSizeMemoEdit), typeof(RepositoryItemAutoSizeMemoEdit), typeof(MemoEditViewInfo), new MemoEditPainter(), true, null));
@@ -57,9 +83,9 @@
             try
             {
                 base.Assign(item);
-                RepositoryItemAutoSizeMemoEdit source = item as RepositoryItemAutoSizeMemoEdit;
-                if (source == null)
+                if (item is RepositoryItemAutoSizeMemoEdit source)
                 {
+                    this.autoSizeInGridLayoutView = source.AutoSizeInGridLayoutView;
                 }
             }
             finally

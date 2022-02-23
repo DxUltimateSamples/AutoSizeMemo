@@ -1,16 +1,24 @@
 ﻿namespace AutoSizeMemo
 {
+    using System;
     using System.ComponentModel;
     using System.Drawing;
     using System.Windows.Forms;
 
+    using DevExpress.Utils.Controls;
     using DevExpress.XtraEditors;
+    using DevExpress.XtraGrid;
+    using DevExpress.XtraGrid.Columns;
+    using DevExpress.XtraGrid.Views.Layout;
+    using DevExpress.XtraGrid.Views.Layout.ViewInfo;
+    using DevExpress.XtraLayout;
 
     [DesignerCategory("")]
     [ToolboxItem(true)]
     public class AutoSizeMemoEdit : MemoEdit
     {
         private int previousHeight;
+        private LayoutView parentLayoutView;
 
         static AutoSizeMemoEdit()
         {
@@ -147,7 +155,6 @@
             if (this.AutoSizeInLayoutControl)
             {
                 var height = this.CalcAutoHeight() + this.Padding.Vertical;
-                ////var height = this.CalcAutoHeight();
                 return new Size(0, height);
             }
 
@@ -189,13 +196,101 @@
 
             if (this.AutoSize)
             {
-                if (newHeight != this.Size.Height && this.AutoSizeMode == AutoSizeMode.GrowAndShrink)
+                if (newHeight != this.Size.Height
+                    && (this.AutoSizeMode == AutoSizeMode.GrowAndShrink || newHeight > this.Size.Height))
                 {
                     this.Height = newHeight;
+
+                    if (this.Properties.AutoSizeInGridLayoutView)
+                    {
+                        this.HandleGridLayoutViewSizeChange();
+                    }
                 }
-                else if (newHeight > this.Size.Height)
+            }
+        }
+
+        /// <summary>Raises the <see cref="E:System.Windows.Forms.Control.Enter" /> event.</summary>
+        /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
+        protected override void OnEnter(EventArgs e)
+        {
+            base.OnEnter(e);
+
+            if (this.Properties.AutoSizeInGridLayoutView)
+            {
+                var layoutView = FindFocusedLayoutView(this);
+
+                if (layoutView != null)
                 {
-                    this.Height = newHeight;
+                    this.parentLayoutView = layoutView;
+                    this.AutoSize = true;
+                }
+            }
+        }
+
+        /// <summary>Raises the <see cref="E:System.Windows.Forms.Control.Leave" /> event.</summary>
+        /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
+        protected override void OnLeave(EventArgs e)
+        {
+            base.OnLeave(e);
+
+            if (this.parentLayoutView != null && this.Properties.AutoSizeInGridLayoutView)
+            {
+                var layoutField = FindFocusedLayoutField(this.parentLayoutView);
+
+                if (layoutField != null)
+                {
+                    layoutField.MaxSize = Size.Empty;
+                    layoutField.MinSize = Size.Empty;
+                    layoutField.SizeConstraintsType = SizeConstraintsType.Default;
+                }
+
+                this.parentLayoutView = null;
+            }
+        }
+
+        private static LayoutView FindFocusedLayoutView(BaseEdit edit)
+        {
+            if (edit.Parent is GridControl gridControl
+                && gridControl.FocusedView is LayoutView layoutView)
+            {
+                return layoutView;
+            }
+
+            return null;
+        }
+
+        private static LayoutViewField FindFocusedLayoutField(LayoutView layoutView)
+        {
+            if (layoutView?.GetViewInfo() is LayoutViewInfo vi && layoutView.FocusedColumn is LayoutViewColumn column)
+            {
+                foreach (var card in vi.VisibleCards)
+                {
+                    if (card.RowHandle == layoutView.FocusedRowHandle)
+                    {
+                        var layoutField = card.Items.FindByName(column.LayoutViewField.Name) as LayoutViewField;
+                        return layoutField;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private void HandleGridLayoutViewSizeChange()
+        {
+            if (this.parentLayoutView != null)
+            {
+                var layoutField = FindFocusedLayoutField(this.parentLayoutView);
+
+                if (layoutField != null)
+                {
+                    var resizable = (IXtraResizableControl)this;
+                    layoutField.SizeConstraintsType = SizeConstraintsType.Custom;
+                    layoutField.ControlMinSize = resizable.MinSize;
+                    layoutField.ControlMaxSize = resizable.MaxSize;
+                    layoutField.Height = resizable.MinSize.Height;
+
+                    this.parentLayoutView.Invalidate();
                 }
             }
         }

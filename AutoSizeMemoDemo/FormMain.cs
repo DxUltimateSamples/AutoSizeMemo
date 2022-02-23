@@ -37,5 +37,13 @@
         {
             this.Close();
         }
+
+        private void AccordionControlElement8_Click(object sender, EventArgs e)
+        {
+            using (var form = new Form4())
+            {
+                form.ShowDialog(this);
+            }
+        }
     }
 }

@@ -34,9 +34,11 @@ namespace LayoutControlTabBackColor
             this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement8 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement6 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement7 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +55,7 @@ namespace LayoutControlTabBackColor
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Hidden;
             this.accordionControl1.SelectElementMode = DevExpress.XtraBars.Navigation.SelectElementMode.MouseDown;
             this.accordionControl1.ShowGroupExpandButtons = false;
-            this.accordionControl1.Size = new System.Drawing.Size(316, 214);
+            this.accordionControl1.Size = new System.Drawing.Size(355, 265);
             this.accordionControl1.TabIndex = 0;
             this.accordionControl1.Text = "accordionControl1";
             // 
@@ -63,6 +65,7 @@ namespace LayoutControlTabBackColor
             this.accordionControlElement2,
             this.accordionControlElement3,
             this.accordionControlElement4,
+            this.accordionControlElement8,
             this.accordionControlElement5});
             this.accordionControlElement1.Expanded = true;
             this.accordionControlElement1.HeaderTemplate.AddRange(new DevExpress.XtraBars.Navigation.HeaderElementInfo[] {
@@ -95,6 +98,28 @@ namespace LayoutControlTabBackColor
             this.accordionControlElement3.Text = "Form 2: AutoSizeMemo on Form with AutoSize";
             this.accordionControlElement3.Click += new System.EventHandler(this.AccordionControlElement3_Click);
             // 
+            // accordionControlElement4
+            // 
+            this.accordionControlElement4.HeaderIndent = 15;
+            this.accordionControlElement4.Height = 45;
+            this.accordionControlElement4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement4.ImageOptions.SvgImage")));
+            this.accordionControlElement4.ImageOptions.SvgImageSize = new System.Drawing.Size(24, 24);
+            this.accordionControlElement4.Name = "accordionControlElement4";
+            this.accordionControlElement4.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement4.Text = "Form 3: AutoSizeMemo on Form with docked layout";
+            this.accordionControlElement4.Click += new System.EventHandler(this.AccordionControlElement4_Click);
+            // 
+            // accordionControlElement8
+            // 
+            this.accordionControlElement8.HeaderIndent = 15;
+            this.accordionControlElement8.Height = 45;
+            this.accordionControlElement8.ImageOptions.SvgImage = global::AutoSizeMemoDemo.Properties.Resources.formatcells;
+            this.accordionControlElement8.ImageOptions.SvgImageSize = new System.Drawing.Size(24, 24);
+            this.accordionControlElement8.Name = "accordionControlElement8";
+            this.accordionControlElement8.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement8.Text = "Form 4: AutoSizeMemo in GridControl with LayoutView";
+            this.accordionControlElement8.Click += new System.EventHandler(this.AccordionControlElement8_Click);
+            // 
             // accordionControlElement5
             // 
             this.accordionControlElement5.HeaderIndent = 15;
@@ -107,17 +132,6 @@ namespace LayoutControlTabBackColor
             this.accordionControlElement5.Text = "Exit";
             this.accordionControlElement5.Click += new System.EventHandler(this.AccordionControlElement5_Click);
             // 
-            // accordionControlElement4
-            // 
-            this.accordionControlElement4.HeaderIndent = 15;
-            this.accordionControlElement4.Height = 45;
-            this.accordionControlElement4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement4.ImageOptions.SvgImage")));
-            this.accordionControlElement4.ImageOptions.SvgImageSize = new System.Drawing.Size(24, 24);
-            this.accordionControlElement4.Name = "accordionControlElement4";
-            this.accordionControlElement4.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement4.Text = "Form 3: AutoSizeMemo on Form with docked layout";
-            this.accordionControlElement4.Click += new System.EventHandler(this.AccordionControlElement4_Click);
-            // 
             // accordionControlElement6
             // 
             this.accordionControlElement6.HeaderIndent = 15;
@@ -128,11 +142,21 @@ namespace LayoutControlTabBackColor
             this.accordionControlElement6.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement6.Text = "Form 2: Solution";
             // 
+            // accordionControlElement7
+            // 
+            this.accordionControlElement7.HeaderIndent = 15;
+            this.accordionControlElement7.Height = 45;
+            this.accordionControlElement7.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement7.ImageOptions.SvgImage")));
+            this.accordionControlElement7.ImageOptions.SvgImageSize = new System.Drawing.Size(24, 24);
+            this.accordionControlElement7.Name = "accordionControlElement7";
+            this.accordionControlElement7.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement7.Text = "Form 3: AutoSizeMemo on Form with docked layout";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 214);
+            this.ClientSize = new System.Drawing.Size(355, 265);
             this.Controls.Add(this.accordionControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FormMain.IconOptions.Icon")));
@@ -152,5 +176,7 @@ namespace LayoutControlTabBackColor
         public DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement5;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement6;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement8;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement7;
     }
 }
