@@ -1,6 +1,6 @@
 <img align="right" src="Shared/dxultimate64.png" />
 
-## DxUltimate Sample: AutoSizeMemoEdit - Auto-Sizing MemoEdit Control 
+## DxUltimate Sample: AutoSizeMemoEdit - An Auto-Sizing DevExpress MemoEdit Control 
 
 ### 1. Introduction 
 
