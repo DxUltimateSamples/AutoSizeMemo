@@ -39,7 +39,7 @@ There are three different use cases, each of which is controlled by a different 
   set **RepositoryItemAutoSizeMemoEdit.AutoSizeInGridLayoutView**
 
 
-##### Important Note
+### Important Note
 
 This control is made specifically for the demonstrated use cases. It might or might not work in other situations.
 
